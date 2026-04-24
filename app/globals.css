@@ -1,0 +1,50 @@
+/* rebornartai-clean/app/globals.css */
+
+/* --------------------------------------------------------------------------
+  Зареждане на шрифт AUDEX
+-------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Audex';
+  src: url('/fonts/AudexItalic-nAj3P.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
+  Глобални настройки
+-------------------------------------------------------------------------- */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Audex', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #1e1b4b; /* Fallback цвят, докато не се зареди фонът */
+  color: white;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+  Декоративни класове, базирани на старата ти логика
+-------------------------------------------------------------------------- */
+.neon-text {
+  text-shadow: 0 0 5px #a855f7, 0 0 10px #a855f7;
+}
+
+.glass-panel {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+  Анимация "bounce", която използвахме за стрелката
+-------------------------------------------------------------------------- */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(10px); }
+}
