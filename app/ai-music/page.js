@@ -14,7 +14,7 @@ export default function AIMusic() {
       </Link>
       
     <div style={{ minHeight: '100vh', background: 'url(images/backgrounds/AiMusicBg.png)', padding: '18rem'}}>
-      <TopSongsBlocks/>
+      <TopSongsBlocks item_type="song" />
     </div>
     </div>
   );

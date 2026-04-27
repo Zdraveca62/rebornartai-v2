@@ -14,7 +14,7 @@ export default function MusicVideos() {
       </Link>
       
     <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/MusicVideosBg.png)', padding: '18rem'}}>
-      <TopSongsBlocks/>
+      <TopSongsBlocks type="videos" category="musicVideos" />
     </div>
     </div>
   );

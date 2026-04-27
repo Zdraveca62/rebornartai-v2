@@ -45,7 +45,7 @@ export default function AIVideosPage() {
       </Link>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto 2rem auto' }}>
-        <TopSongsBlocks type="video" onSongClick={() => {}} />
+        <TopSongsBlocks type="videos" />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', maxWidth: '80rem', margin: '0 auto', padding: '0 1rem', width: '100%' }}>

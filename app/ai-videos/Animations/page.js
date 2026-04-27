@@ -13,7 +13,7 @@ export default function Animation() {
         </button>
       </Link>
       <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/AnimationsBg.png)', padding: '18rem'}}>
-      <TopSongsBlocks/>
+      <TopSongsBlocks type="videos" category="animations" />
     </div>
     </div>
   );

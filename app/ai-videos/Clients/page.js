@@ -14,7 +14,7 @@ export default function Clients() {
       </Link>
       
     <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/ClientsBg.png)', padding: '18rem'}}>
-      <TopSongsBlocks/>
+      <TopSongsBlocks type="videos" category="clients" />
     </div>
     </div>
   );

@@ -20,7 +20,7 @@ export default function Impressions() {
     </button>
       
     <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/ImpressionsBg.png)', padding: '18rem'}}>
-      <TopSongsBlocks/>
+      <TopSongsBlocks type="videos" category="impressions" />
     </div>
     </div>
   );
