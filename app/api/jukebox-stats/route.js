@@ -28,7 +28,7 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const { songId, songTitle, songLanguage, item_type, youtube_id } = body;
+    const { songId, songTitle, songLanguage, item_type, youtubeId } = body;
 
     if (!songId) {
       return NextResponse.json(
@@ -37,7 +37,6 @@ export async function POST(request) {
       );
     }
 
-    // Проверка дали вече съществува запис за този song_id и item_type
     const { data: existing, error: findError } = await supabase
       .from('jukebox_stats')
       .select('id, listen_count')
@@ -55,7 +54,7 @@ export async function POST(request) {
           last_listened: new Date().toISOString(),
           song_title: songTitle,
           song_language: songLanguage || 'bg',
-          ...(youtube_id && { youtube_id })
+          ...(youtubeId && { youtube_id: youtubeId })
         })
         .eq('id', existing.id);
 
@@ -69,7 +68,7 @@ export async function POST(request) {
           song_title: songTitle,
           song_language: songLanguage || 'bg',
           item_type: item_type || 'song',
-          youtube_id: youtube_id || null,
+          youtube_id: youtubeId || null,
           listen_count: 1,
           last_listened: new Date().toISOString()
         });

@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import TopSongsBlocks from '@/app/components/TopSongsBlocks';
+import VideoTopBlocks from '@/app/components/VideoTopBlocks';
 
 export default function AIVideosPage() {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     fetchVideos();
@@ -16,86 +17,169 @@ export default function AIVideosPage() {
     try {
       const res = await fetch('/api/videos');
       const data = await res.json();
-      setVideos(data);
-      setLoading(false);
+      setVideos(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error('Грешка при зареждане на видеа:', error);
+    } finally {
       setLoading(false);
     }
   };
 
   const categories = [
-    { id: 'Impressions', title: 'Видео Импресии', color: '#8b5cf6' },
-    { id: 'MusicVideos', title: 'Музикални видеа', color: '#ec4899' },
-    { id: 'Animations', title: 'Анимации', color: '#14b8a6' },
-    { id: 'Clients', title: 'Видео - Клиенти', color: '#f59e0b' }
+    { id: 'impressions',  route: 'Impressions',  color: '#8b5cf6', icon: '🎥', thumb: '/images/cards/ImpressionsCard.png' },
+    { id: 'musicvideos',  route: 'MusicVideos',  color: '#ec4899', icon: '🎵', thumb: '/images/cards/musicvideos-card.png' },
+    { id: 'animations',   route: 'Animations',   color: '#14b8a6', icon: '✨', thumb: '/images/cards/AnimationCard.png' },
+    { id: 'clients',      route: 'Clients',      color: '#f59e0b', icon: '🤝', thumb: '/images/cards/CkientsCard.png' },
   ];
 
-  const getVideoCount = (categoryId) => {
-    return videos.filter(v => v.category === categoryId).length;
+  const getVideoCount = (categoryId) =>
+    videos.filter(v => v.category === categoryId).length;
+
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategory(prev => prev === categoryId ? null : categoryId);
   };
 
   return (
-    <div style={{ minHeight: '100vh', background: 'url(images/backgrounds/AiVideosBg.png)', padding: '18rem'}}>
-      
+    <div style={{
+      minHeight: '100vh',
+      background: 'url(/images/backgrounds/AiVideosBg.png) center/cover fixed',
+      padding: '2rem 1rem 4rem',
+    }}>
+
+      {/* Назад бутон */}
       <Link href="/">
-        <button style={{ position: 'fixed', top: '1rem', left: '1rem', background: 'rgba(255,255,255,0.2)', border: 'none', color: 'white', padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer', zIndex: 10 }}>
+        <button style={{
+          position: 'fixed', top: '1rem', left: '1rem',
+          background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)',
+          border: '1px solid rgba(255,255,255,0.2)', color: 'white',
+          padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer', zIndex: 10,
+          fontSize: '0.9rem',
+        }}>
           ← Назад
         </button>
       </Link>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto 2rem auto' }}>
-        <TopSongsBlocks type="videos" />
-      </div>
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', maxWidth: '80rem', margin: '0 auto', padding: '0 1rem', width: '100%' }}>
-        
-        {categories.map(category => {
-          const count = getVideoCount(category.id);
-          const hasVideos = count > 0;
-          
-          
-          return (
-            <Link key={category.id} href={`/ai-videos/${category.id}`} style={{ textDecoration: 'none' }}>
-              <div style={{
-                background: 'rgba(255,255,255,0.1)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '16px',
-                padding: '2rem',
-                cursor: 'pointer',
-                textAlign: 'center',
-                border: `1px solid ${category.color}`,
-                transition: 'transform 0.3s, box-shadow 0.3s',
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = 'scale(1.05)';
-                e.currentTarget.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}>
-                <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>{category.icon}</div>
-                <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', color: 'white', marginBottom: '0.5rem' }}>
+        {/* Топ 5 блокове */}
+        <div style={{ marginTop: '15rem', marginBottom: '2.5rem' }}>
+          {loading ? (
+            <p style={{ color: '#9ca3af', textAlign: 'center' }}>Зареждане...</p>
+          ) : (
+            <VideoTopBlocks videos={videos} selectedCategory={selectedCategory} />
+          )}
+        </div>
+
+        {/* Категории */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '2rem',
+        }}>
+          {categories.map(category => {
+            const count = getVideoCount(category.id);
+            const isSelected = selectedCategory === category.id;
+
+            return (
+              <div
+                key={category.id}
+                onClick={() => handleCategoryClick(category.id)}
+                style={{
+                  background: isSelected
+                    ? `${category.color}22`
+                    : 'rgba(255,255,255,0.08)',
+                  backdropFilter: 'blur(12px)',
+                  borderRadius: '16px',
+                  padding: '2rem 1.5rem',
+                  cursor: 'pointer',
+                  textAlign: 'center',
+                  border: `2px solid ${isSelected ? category.color : category.color + '55'}`,
+                  transition: 'transform 0.2s, box-shadow 0.2s, background 0.2s',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '0.5rem',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.04)';
+                  e.currentTarget.style.boxShadow = `0 8px 28px ${category.color}44`;
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = 'none';
+                }}
+              >
+                {/* Тъмбнайл */}
+                <div style={{
+                  width: '100%',
+                  height: '120px',
+                  borderRadius: '10px',
+                  overflow: 'hidden',
+                  marginBottom: '0.25rem',
+                  border: `1px solid ${category.color}55`,
+                }}>
+                  <img
+                    src={category.thumb}
+                    alt={category.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }}
+                  />
+                </div>
+                <h2 style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'white', margin: 0 }}>
                   {category.title}
                 </h2>
-                <p style={{ color: hasVideos ? category.color : '#9ca3af', fontSize: '1rem', fontWeight: 'bold', marginTop: '1rem' }}>
-                  {hasVideos ? `🎬 Налични видеа: ${count}` : '❌ Няма добавено видео'}
+                <p style={{
+                  color: count > 0 ? category.color : '#6b7280',
+                  fontSize: '0.95rem', fontWeight: '600', margin: 0,
+                }}>
+                  {count > 0 ? `🎬 Налични видеа: ${count}` : '❌ Няма добавено видео'}
                 </p>
+                {isSelected && (
+                  <span style={{
+                    marginTop: '0.3rem', fontSize: '0.75rem',
+                    color: category.color, fontWeight: 'bold',
+                  }}>
+                    ▲ Топ 5 по-горе
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Линкове към подкатегориите */}
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+          gap: '0.75rem',
+        }}>
+          {categories.map(category => (
+            <Link key={category.id} href={`/ai-videos/${category.route}`} style={{ textDecoration: 'none' }}>
+              <div style={{
+                background: 'rgba(255,255,255,0.05)',
+                border: `1px solid ${category.color}33`,
+                borderRadius: '10px',
+                padding: '0.75rem 1rem',
+                color: category.color,
+                textAlign: 'center',
+                fontSize: '0.85rem',
+                cursor: 'pointer',
+                transition: 'background 0.2s',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.background = `${category.color}18`}
+              onMouseLeave={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.05)'}
+              >
+                → Разгледай {category.title}
               </div>
             </Link>
-          );
-        })}
+          ))}
+        </div>
+
+        <p style={{ color: '#d777d6', marginTop: '2.5rem', textAlign: 'center', fontSize: '2rem' }}>
+          ⚡ Кликни върху категория за Топ 5 само от нея • Кликни "Разгледай" за всички видеа
+        </p>
       </div>
-      
-      <p style={{ color: '#9ca3af', marginTop: '3rem', textAlign: 'center', fontSize: '0.875rem' }}>
-        ⚡ Кликни върху категория, за да разгледаш видеата
-      </p>
     </div>
   );
 }

@@ -1,21 +1,42 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import TopSongsBlocks from '@/app/components/TopSongsBlocks';
+import MusicCarousel from '@/app/components/MusicCarousel';
 
 export default function AIMusic() {
+  const [allSongs, setAllSongs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/songs')
+      .then(res => res.json())
+      .then(data => {
+        const songs = Array.isArray(data) ? data : [];
+        setAllSongs(songs);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Грешка при зареждане:', err);
+        setAllSongs([]);
+        setLoading(false);
+      });
+  }, []);
+
   return (
-    <div>  
+    <div>
       <Link href="/">
         <button style={{ position: 'fixed', top: '1rem', left: '1rem', background: 'rgba(255,255,255,0.2)', border: 'none', color: 'white', padding: '0.5rem 1rem', borderRadius: '8px', cursor: 'pointer', zIndex: 10 }}>
           ← Назад
         </button>
       </Link>
-      
-    <div style={{ minHeight: '100vh', background: 'url(images/backgrounds/AiMusicBg.png)', padding: '18rem'}}>
-      <TopSongsBlocks item_type="song" />
-    </div>
+
+      <div style={{ minHeight: '100vh', background: 'url(images/backgrounds/AiMusicBg.png)', padding: '18rem' }}>
+        <TopSongsBlocks item_type="song" />
+
+        {!loading && <MusicCarousel songs={allSongs} />}
+      </div>
     </div>
   );
 }

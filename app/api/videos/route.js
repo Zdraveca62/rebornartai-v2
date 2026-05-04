@@ -1,17 +1,18 @@
-import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
+import { createClient } from '@supabase/supabase-js';
 
-export async function GET() {
-  try {
-    const { data, error } = await supabase
-      .from('videos')
-      .select('*')
-      .order('created_at', { ascending: false });
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+);
 
-    if (error) throw error;
-    return NextResponse.json(data || []);
-  } catch (error) {
-    console.error('Error fetching videos:', error);
-    return NextResponse.json([], { status: 500 });
-  }
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const category = searchParams.get('category');
+
+  let query = supabase.from('videos').select('*').order('created_at', { ascending: false });
+  if (category) query = query.eq('category', category);
+
+  const { data, error } = await query;
+  if (error) return Response.json({ error: error.message }, { status: 500 });
+  return Response.json(data);
 }

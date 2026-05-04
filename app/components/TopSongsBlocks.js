@@ -94,11 +94,24 @@ export default function TopSongsBlocks({ type = 'songs', category = null }) {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem' }}>
         
         {/* ЧЕРВЕН ПАНЕЛ */}
-        <div style={{ background: 'radial-gradient(circle at 20% 30%, #3b0764, #1e1b4b)', borderRadius: '20px', padding: '1rem 1.2rem', border: '1px solid rgba(168,85,247,0.4)' }}>
-          <h2 style={{ color: '#d8b4fe', textAlign: 'left', marginBottom: '0.2rem', fontSize: '1.3rem', textTransform: 'uppercase' }}>TOP 5 YOUTUBE</h2>
-          <p style={{ color: '#a855f7', textAlign: 'left', marginBottom: '1rem', fontSize: '0.7rem', textTransform: 'uppercase' }}>MOST VIEWED</p>
+        <div style={{ background: 'radial-gradient(circle at 20% 30%, #3b0764, #1e1b4b)', 
+                      borderRadius: '20px', 
+                      padding: '1rem 1.2rem', 
+                      border: '1px solid rgba(168,85,247,0.4)' }}>
+          <h2 style={{ color: '#d8b4fe', 
+                       textAlign: 'left', 
+                       marginBottom: '0.2rem', 
+                       fontSize: '1.3rem', 
+                       textTransform: 'uppercase' }}>TOP 5 YOUTUBE</h2>
+          <p style={{ color: '#b77eec', 
+                      textAlign: 'left', 
+                      marginBottom: '1rem', 
+                      fontSize: '0.7rem', 
+                      textTransform: 'uppercase' }}>MOST VIEWED</p>
           {topYouTube.length === 0 ? (
-            <p style={{ color: '#a855f7', textAlign: 'center', textTransform: 'uppercase' }}>НЯМА ДАННИ</p>
+            <p style={{ color: '#b77eec', 
+                        textAlign: 'center', 
+                        textTransform: 'uppercase' }}>НЯМА ДАННИ</p>
           ) : (
             topYouTube.map((item, idx) => (
               <a key={item.youtube_id || idx} href={item.videoUrl || `https://youtube.com/watch?v=${item.youtube_id}`} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'none' }}>
@@ -113,7 +126,10 @@ export default function TopSongsBlocks({ type = 'songs', category = null }) {
         </div>
 
         {/* СИН ПАНЕЛ */}
-        <div style={{ background: 'radial-gradient(circle at 80% 30%, #3b0764, #1e1b4b)', borderRadius: '20px', padding: '1rem 1.2rem', border: '1px solid rgba(168,85,247,0.4)' }}>
+        <div style={{ 
+          background: 'radial-gradient(circle at 80% 30%, #3b0764, #1e1b4b)', 
+          borderRadius: '20px', padding: '1rem 1.2rem', 
+          border: '1px solid rgba(168,85,247,0.4)' }}>
           <h2 style={{ color: '#d8b4fe', textAlign: 'right', marginBottom: '0.2rem', fontSize: '1.3rem', textTransform: 'uppercase' }}>{type === 'videos' ? 'TOP 5 VIDEOS' : 'TOP 5 SITE'}</h2>
           <p style={{ color: '#a855f7', textAlign: 'right', marginBottom: '1rem', fontSize: '0.7rem', textTransform: 'uppercase' }}>{type === 'videos' ? 'MOST VIEWED' : 'MOST PLAYED'}</p>
           {topSite.length === 0 ? (
