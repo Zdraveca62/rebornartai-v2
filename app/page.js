@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react'; 
-import TopSongsBlocks from './components/TopSongsBlocks';
+import TopSongsBlocks from '../components/TopSongsBlocks';
 
 export default function Home() {
   const secondSectionRef = useRef(null);

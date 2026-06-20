@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "AI ART by 3DravecAI",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -12,9 +13,11 @@
   "author": "Zdravko Krastev",
   "license": "ISC",
   "dependencies": {
+    "@supabase/auth-helpers-nextjs": "^0.15.0",
     "@supabase/supabase-js": "^2.104.0",
     "dotenv": "^17.4.2",
     "next": "^16.2.4",
+    "next-intl": "^4.11.1",
     "react": "^19.2.5",
     "react-dom": "^19.2.5"
   }

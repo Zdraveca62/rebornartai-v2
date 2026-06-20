@@ -13,7 +13,9 @@ export default function Blog() {
         </button>
       </Link>
       
-    <div style={{ minHeight: '100vh', background: 'url(images/backgrounds/BlogsBg.png)', padding: '18rem'}}>
+    <div style={{ minHeight: '100vh', 
+                  background: 'url(images/backgrounds/BlogsBg.png)top/cover fixed ',
+                  padding: '10rem 2rem 4rem'}}>
       
     </div>
     </div>

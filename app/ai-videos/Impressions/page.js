@@ -24,8 +24,8 @@ export default function Impressions() {
         ← Назад
       </button>
 
-      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/ImpressionsBg.png) center/cover fixed', padding: '6rem 2rem 4rem' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/ImpressionsBg.png) top/cover fixed', padding: '6rem 2rem 4rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', marginTop:'15rem' }}>
           <VideoTopBlocks category="impressions" />
           <VideosCarousel videos={videos} />
         </div>

@@ -32,7 +32,9 @@ export default function AIMusic() {
         </button>
       </Link>
 
-      <div style={{ minHeight: '100vh', background: 'url(images/backgrounds/AiMusicBg.png)', padding: '18rem' }}>
+      <div style={{ minHeight: '100vh',
+                    background: 'url(images/backgrounds/AiMusicBg.png) top/cover fixed ', 
+                    padding: '15rem 2rem 4rem' }}>
         <TopSongsBlocks item_type="song" />
 
         {!loading && <MusicCarousel songs={allSongs} />}

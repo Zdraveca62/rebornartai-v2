@@ -1,0 +1,41 @@
+{
+  "nav": {
+    "home": "Home",
+    "music": "AI Music",
+    "videos": "AI Videos",
+    "jukebox": "Jukebox",
+    "clients": "Clients"
+  },
+"home": {
+  "scrollDown": "Scroll down",
+  "musicSub": "AI Generated Songs",
+  "videoSub": "AI Generated Videos",
+  "blogSub": "Everything about AI",
+  "jukeboxSub": "Non-stop listening",
+  "clientsSub": "Order your video"
+},
+  "auth": {
+    "login": "Login",
+    "signup": "Sign Up",
+    "email": "Email address",
+    "password": "Password",
+    "submit": "Enter",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?"
+  },
+  "access": {
+    "inviteTitle": "Join the Privilege",
+    "inviteText": "Register and see yourself as the hero in a song or video",
+    "registerBtn": "Register for free"
+  },
+  "greeting": {
+  "first": "👋 Welcome to the world of AI!",
+  "returning": "✨ Thank you for visiting the world of AI again! This is your visit number {count}."
+},
+"clients": {
+  "welcome": {
+    "title": "Client Zone",
+    "subtitle": "This page is for creating your personalized video preview"
+  }
+}
+}

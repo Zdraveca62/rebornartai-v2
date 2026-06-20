@@ -22,8 +22,8 @@ export default function MusicVideos() {
         </button>
       </Link>
 
-      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/MusicVideosBg.png) center/cover fixed', padding: '6rem 2rem 4rem' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/MusicVideosBg.png) top/cover fixed', padding: '6rem 2rem 4rem' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', marginTop:'15rem' }}>
           <VideoTopBlocks category="musicvideos" />
           <VideosCarousel videos={videos} />
         </div>
