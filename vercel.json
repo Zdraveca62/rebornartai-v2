@@ -1,8 +1,0 @@
-{
-  "crons": [
-    {
-      "path": "/api/update-youtube-cache",
-      "schedule": "0 8,14,20 * * *"
-    }
-  ]
-}
