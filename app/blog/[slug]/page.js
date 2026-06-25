@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import TopSongsBlocks from '@/app/components/TopSongsBlocks';
+import TopSongsBlocks from '@/components/TopSongsBlocks';
 
 export default function slug() {
   return (

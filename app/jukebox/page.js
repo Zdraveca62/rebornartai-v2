@@ -2,9 +2,9 @@
 
 import { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
-import TopSongsBlocks from '@/app/components/TopSongsBlocks';
-import SongsCarousel from '@/app/components/SongsCarousel';
-import QueueStrip from '@/app/components/QueueStrip';
+import TopSongsBlocks from '@/components/TopSongsBlocks';
+import SongsCarousel from '@/components/SongsCarousel';
+import QueueStrip from '@/components/QueueStrip';
 
 export default function Jukebox() {
   const [allSongs, setAllSongs] = useState([]);

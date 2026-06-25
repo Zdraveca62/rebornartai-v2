@@ -1,22 +1,27 @@
-import { NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabaseClient';
+// Redirect към /api/youtube-top
+import { NextResponse } from 'next/server'
+import { query } from '@/lib/db'
+
+export const dynamic = 'force-dynamic'
 
 export async function GET(request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const type = searchParams.get('type') || 'songs';
-    const limit = parseInt(searchParams.get('limit') || '5');
+    const { searchParams } = new URL(request.url)
+    const type  = searchParams.get('type') || 'songs'
+    const limit = Math.min(parseInt(searchParams.get('limit') || '5'), 20)
 
-    let query = supabase.from('youtube_cache').select('youtube_id, title, views');
-    if (type === 'songs') query = query.eq('item_type', 'song');
-    else if (type === 'videos') query = query.eq('item_type', 'video');
+    const res = await query(
+      `SELECT youtube_id, title, views, thumbnail_url
+       FROM youtube_cache
+       WHERE item_type = $1
+       ORDER BY views DESC
+       LIMIT $2`,
+      [type === 'songs' ? 'song' : 'video', limit]
+    )
 
-    const { data, error } = await query.order('views', { ascending: false }).limit(limit);
-    if (error) throw error;
-
-    return NextResponse.json({ success: true, videos: data });
+    return NextResponse.json({ success: true, videos: res.rows })
   } catch (err) {
-    console.error(err);
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+    console.error(err)
+    return NextResponse.json({ success: false, error: err.message }, { status: 500 })
   }
 }

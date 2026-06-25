@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import TopSongsBlocks from '@/app/components/TopSongsBlocks';
-import MusicCarousel from '@/app/components/MusicCarousel';
+import TopSongsBlocks from '@/components/TopSongsBlocks';
+import MusicCarousel from '@/components/MusicCarousel';
 
 export default function AIMusic() {
   const [allSongs, setAllSongs] = useState([]);

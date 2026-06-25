@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import VideoTopBlocks from '@/app/components/VideoTopBlocks';
+import VideoTopBlocks from '@/components/VideoTopBlocks';
 
 export default function AIVideosPage() {
   const [videos, setVideos] = useState([]);

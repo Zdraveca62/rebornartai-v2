@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import VideoTopBlocks from '@/app/components/VideoTopBlocks';
-import VideosCarousel from '@/app/components/VideosCarousel';
+import VideoTopBlocks from '@/components/VideoTopBlocks';
+import VideosCarousel from '@/components/VideosCarousel';
 
 export default function Animation() {
   const [videos, setVideos] = useState([]);
