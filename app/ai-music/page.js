@@ -33,7 +33,7 @@ export default function AIMusic() {
       </Link>
 
       <div style={{ minHeight: '100vh',
-                    background: 'url(images/backgrounds/AiMusicBg.png) top/cover fixed ', 
+                    background: 'url(images/backgrounds/AiMusicBg.png) top/cover scroll ', 
                     padding: '15rem 2rem 4rem' }}>
         <TopSongsBlocks item_type="song" />
 

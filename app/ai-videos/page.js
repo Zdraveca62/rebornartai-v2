@@ -37,7 +37,7 @@ export default function AIVideosPage() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'url(/images/backgrounds/AiVideosBg.png) top/cover fixed',
+      background: 'url(/images/backgrounds/AiVideosBg.png) top/cover scroll',
       padding: '6rem 1rem 4rem'
     }}>
 

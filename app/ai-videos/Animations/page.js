@@ -22,7 +22,7 @@ export default function Animation() {
         </button>
       </Link>
 
-      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/AnimationsBg.png) top/cover fixed', padding: '6rem 2rem 4rem' }}>
+      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/AnimationsBg.png) top/cover scroll', padding: '6rem 2rem 4rem' }}>
         <div style={{ maxWidth: '1200px', margin: '0 auto', marginTop:'15rem' }}>
           <VideoTopBlocks category="animations" />
           <VideosCarousel videos={videos} />

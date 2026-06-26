@@ -77,7 +77,7 @@ export default function OrderPreviewPage() {
 
   if (existingOrder) {
     return (
-      <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'url(/images/backgrounds/ClientsBg.png) top/cover fixed', padding: '10rem 2rem 4rem', fontFamily: 'sans-serif' }}>
+      <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'url(/images/backgrounds/ClientsBg.png) top/cover scroll', padding: '10rem 2rem 4rem', fontFamily: 'sans-serif' }}>
         <div style={{ width: '100%', maxWidth: 480, background: '#1a1a1a', borderRadius: 16, padding: '2.5rem 2rem', boxShadow: '0 8px 40px rgba(0,0,0,0.6)', border: '1px solid #2a2a2a', textAlign: 'center' }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎬</div>
           <h2 style={{ color: '#fff', marginBottom: '0.5rem', fontSize: '1.4rem' }}>
@@ -108,7 +108,7 @@ export default function OrderPreviewPage() {
   }
 
   return (
-    <main style={{ minHeight: '100vh', background: 'url(/images/backgrounds/ClientsBg.png) top/cover fixed', padding: '10rem 2rem 4rem', fontFamily: 'sans-serif' }}>
+    <main style={{ minHeight: '100vh', background: 'url(/images/backgrounds/ClientsBg.png) top/cover scroll', padding: '10rem 2rem 4rem', fontFamily: 'sans-serif' }}>
       <div style={{ maxWidth: 640, margin: '0 auto' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: '2.5rem' }}>
           {[

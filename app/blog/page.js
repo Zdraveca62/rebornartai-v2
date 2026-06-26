@@ -14,7 +14,7 @@ export default function Blog() {
       </Link>
       
     <div style={{ minHeight: '100vh', 
-                  background: 'url(images/backgrounds/BlogsBg.png)top/cover fixed ',
+                  background: 'url(images/backgrounds/BlogsBg.png)top/cover scroll ',
                   padding: '10rem 2rem 4rem'}}>
       
     </div>

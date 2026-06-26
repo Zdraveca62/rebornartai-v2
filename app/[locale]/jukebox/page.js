@@ -247,7 +247,7 @@ useEffect(() => {
         </button>
       </Link>
 
-      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/JukeboxBg.png) top/cover fixed', padding: '16rem 1rem 4rem' }}>
+      <div style={{ minHeight: '100vh', background: 'url(/images/backgrounds/JukeboxBg.png) top/cover scroll', padding: '16rem 1rem 4rem' }}>
         <TopSongsBlocks />
 
         <p style={{ marginTop: '1rem', marginBottom: '1rem', textAlign: 'center', color: 'white' }}>
